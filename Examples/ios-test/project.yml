@@ -1,0 +1,54 @@
+name: LedgerBtcExample
+options:
+  bundleIdPrefix: com.benjaminchodroff.example
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    # Pure Swift app; no Objective-C bridging header. The UniFFI
+    # generated bindings file expects to see the C module
+    # `ledger_btc_coreFFI` exposed via the xcframework's modulemap.
+
+targets:
+  LedgerBtcExample:
+    type: application
+    platform: iOS
+    sources:
+      # Local app sources.
+      - path: LedgerBtcExample
+      # UniFFI's generated Swift glue, referenced in-place from the
+      # bindings directory at the repo root. Regenerating bindings
+      # via `make ios` picks up automatically next build.
+      - path: ../../ios/bindings/ledger_btc_core.swift
+        type: file
+    dependencies:
+      - framework: ../../ios/LedgerBtcCore.xcframework
+        embed: false  # static .a inside; just link, don't embed
+    info:
+      path: LedgerBtcExample/Info.plist
+      properties:
+        CFBundleDisplayName: Ledger BTC Example
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        # Required for CoreBluetooth on iOS 13+.
+        NSBluetoothAlwaysUsageDescription: >-
+          Connect to your Ledger Nano X over Bluetooth to read
+          addresses and sign transactions.
+        # Required for VisionKit DataScanner-based QR import.
+        NSCameraUsageDescription: >-
+          Scan PSBT QR codes from a desktop wallet (e.g. Sparrow)
+          for signing on your Ledger.
+        # Background BLE not currently used; if added later, also
+        # set UIBackgroundModes = [bluetooth-central].
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1,2"  # iPhone + iPad
+        PRODUCT_BUNDLE_IDENTIFIER: com.benjaminchodroff.example.LedgerBtcExample
+        # Local-only signing. User picks their team in Xcode after
+        # opening the generated project.
+        CODE_SIGN_STYLE: Automatic

@@ -1,0 +1,38 @@
+[package]
+name = "ledger-btc-core"
+version = "0.1.0"
+description = "Ledger Bitcoin app signing client with UniFFI bindings for Swift and Kotlin"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[lib]
+# `cdylib` for iOS/Android dynamic loading via UniFFI bindings.
+# `staticlib` for iOS xcframework static linking.
+# `rlib` (lib) so the same crate can be consumed by Rust tests.
+name = "ledger_btc_core"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[dependencies]
+ledger_bitcoin_client.workspace = true
+bitcoin.workspace = true
+async-trait.workspace = true
+base64.workspace = true
+thiserror.workspace = true
+hex.workspace = true
+
+# UniFFI's `tokio` feature uses tokio for the futures runtime hook
+# inside generated async-callback glue. `cli` is needed to compile
+# the uniffi-bindgen wrapper binary (src/bin/uniffi-bindgen.rs).
+uniffi = { workspace = true, features = ["tokio", "cli"] }
+tokio = { workspace = true, features = ["sync", "rt", "macros"] }
+
+[dev-dependencies]
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["sync", "rt", "macros", "test-util"] }
+
+[build-dependencies]
+uniffi = { workspace = true, features = ["build"] }

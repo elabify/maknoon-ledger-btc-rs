@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose Material3 paints the chrome; we only need a bare
+         theme that disables the OS-level title bar. Using the
+         platform Material.Light avoids pulling in AppCompat. -->
+    <style name="Theme.LedgerBtcExample" parent="@android:style/Theme.Material.Light.NoActionBar" />
+</resources>

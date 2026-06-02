@@ -1,0 +1,43 @@
+## Rust
+/target/
+**/target/
+*.pdb
+
+## UniFFI generated bindings (regenerated from source)
+/ios/bindings/
+/android/library/src/main/java/uniffi/
+/android/library/src/main/jniLibs/
+
+## Build outputs
+/ios/LedgerBtcCore.xcframework/
+/android/build/
+/android/.gradle/
+/android/library/build/
+
+## Examples/android-test build artifacts
+/Examples/android-test/build/
+/Examples/android-test/.gradle/
+/Examples/android-test/app/build/
+/Examples/android-test/local.properties
+
+## macOS
+.DS_Store
+
+## IDE
+.idea/
+.vscode/
+*.swp
+
+## Local development
+.env
+*.local
+
+## Captured conformance fixtures contain real device data
+## (master fingerprint, xpubs) and must not be committed.
+## Capture locally with `ledger-cli --capture <path>`; the
+## conformance harness picks them up automatically.
+/ledger-btc-core/tests/fixtures/*.json
+
+## Generated Xcode artifacts under example projects.
+/Examples/macos-cli/ledger-cli
+/Examples/ios-test/LedgerBtcExample.xcodeproj/

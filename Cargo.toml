@@ -1,0 +1,33 @@
+[workspace]
+resolver = "2"
+members = ["ledger-btc-core"]
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.81"
+license = "Apache-2.0"
+repository = "https://github.com/elabify/maknoon-ledger-btc-rs"
+authors = ["Benjamin Chodroff"]
+
+[workspace.dependencies]
+# Pinned to v0.6.2 per the Cargo.lock-pinning decision. Bump
+# deliberately and re-run the conformance harness before changing.
+ledger_bitcoin_client = { version = "=0.6.2", default-features = false, features = ["async"] }
+bitcoin = { version = "0.32", default-features = false, features = ["std", "serde", "base64"] }
+uniffi = { version = "0.31", default-features = false }
+async-trait = "0.1"
+base64 = "0.22"
+thiserror = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hex = "0.4"
+tokio = { version = "1", default-features = false }
+
+[profile.release]
+# Bank pen-testers will inspect symbols. Keep them readable; the
+# size cost is acceptable for a hardware-wallet signing library
+# that's ~hundreds of KB anyway.
+strip = false
+lto = "thin"
+opt-level = 3
+codegen-units = 1
