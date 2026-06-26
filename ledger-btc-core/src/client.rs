@@ -163,6 +163,34 @@ impl LedgerBitcoinClient {
         Ok(B64.encode(signed_bytes))
     }
 
+    /// Sign an arbitrary message with the key at `path` (a full BIP32 path)
+    /// in the standard "Bitcoin Signed Message" format. The Ledger app shows
+    /// the message + address and sets the address-type header byte from the
+    /// path's purpose. Returns the recovered address + base64 signature,
+    /// matching the software + Trezor message-sign paths.
+    pub async fn sign_message(
+        &self,
+        path: String,
+        message: Vec<u8>,
+        network: crate::message::BtcMsgNetwork,
+    ) -> Result<crate::message::BtcSignedMessage, LedgerError> {
+        let dpath = DerivationPath::from_str(&path)
+            .map_err(|e| LedgerError::protocol(format!("invalid derivation path '{path}': {e}")))?;
+        let (header, sig) = self
+            .client
+            .sign_message(&message, &dpath)
+            .await
+            .map_err(map_bitcoin_client_error)?;
+        let mut packed = Vec::with_capacity(65);
+        packed.push(header);
+        packed.extend_from_slice(&sig.serialize_compact());
+        let signature = B64.encode(&packed);
+        let script_type = crate::message::script_type_from_path(&path);
+        let address = crate::message::recover_address(&message, &packed, script_type, network)
+            .ok_or_else(|| LedgerError::protocol("could not recover signing address"))?;
+        Ok(crate::message::BtcSignedMessage { address, signature })
+    }
+
     /// Register a custom wallet policy on the device. The user
     /// confirms once on-device; the returned `RegisteredPolicy.hmac`
     /// is the trust anchor for future `sign_psbt` and

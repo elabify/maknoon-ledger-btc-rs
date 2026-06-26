@@ -33,6 +33,8 @@ tokio = { workspace = true, features = ["sync", "rt", "macros"] }
 serde.workspace = true
 serde_json.workspace = true
 tokio = { workspace = true, features = ["sync", "rt", "macros", "test-util"] }
+# KAT generation only: keccak256 for the Ethereum EIP-191 reference vector.
+tiny-keccak = { version = "2", features = ["keccak"] }
 
 [build-dependencies]
 uniffi = { workspace = true, features = ["build"] }

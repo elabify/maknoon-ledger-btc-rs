@@ -1,0 +1,94 @@
+{
+  "_comment": "Canonical cross-platform message-signing known-answer vectors. Regenerate with: cargo test -p ledger-btc-core --test kat_gen -- --ignored --nocapture. Asserted byte-for-byte by the Rust core, iOS (MaknoonTests), and Android (androidTest); the iOS/Android copies of this file must stay identical. BTC = standard 'Bitcoin Signed Message' (BIP-137, Electrum-compatible); ETH = EIP-191 personal_sign. Keys derive from the standard BIP-39 test mnemonic.",
+  "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+  "seedHex": "5eb00bbddcf069084889a8ab9155568165f5c453ccb85e70811aaed6f6da5fc19a5ac40b389cd370d086206dec8aa6c43daea6690f20ad3d8d48b2d2ce9e38e4",
+  "bitcoin": [
+    {
+      "scriptType": "legacy",
+      "network": "mainnet",
+      "path": "m/44'/0'/0'/0/0",
+      "secretKeyHex": "e284129cc0922579a535bbf4d1a3b25773090d28c909bc0fed73b5e0222cc372",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "1LqBGSKuX5yYUonjxT5qGfpUsXKYYWeabA",
+      "expectedSignature": "IKb48tGJtoDQNTQF8zOQMvJFBjBclP6HozblDcZmSwTzaN5a85GlRoYQLZs3bsRDp19uxZC67yyDsmUFtBvCjas="
+    },
+    {
+      "scriptType": "legacy",
+      "network": "testnet3",
+      "path": "m/44'/1'/0'/0/0",
+      "secretKeyHex": "e01fea8a48e2854fdd0255c12b1d704967d9401f11c3f4980006ced8977574dc",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "mkpZhYtJu2r87Js3pDiWJDmPte2NRZ8bJV",
+      "expectedSignature": "ILPJGv5cA4+dbSEYyG0HImFXpDNePy0m/Y+HYyZt1NXtTLDTTiRduxea3oGV02BNDQfKAbrrUu6EOzdAmRjINd4="
+    },
+    {
+      "scriptType": "legacy",
+      "network": "signet",
+      "path": "m/44'/1'/0'/0/0",
+      "secretKeyHex": "e01fea8a48e2854fdd0255c12b1d704967d9401f11c3f4980006ced8977574dc",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "mkpZhYtJu2r87Js3pDiWJDmPte2NRZ8bJV",
+      "expectedSignature": "ILPJGv5cA4+dbSEYyG0HImFXpDNePy0m/Y+HYyZt1NXtTLDTTiRduxea3oGV02BNDQfKAbrrUu6EOzdAmRjINd4="
+    },
+    {
+      "scriptType": "nestedSegwit",
+      "network": "mainnet",
+      "path": "m/49'/0'/0'/0/0",
+      "secretKeyHex": "508c73a06f6b6c817238ba61be232f5080ea4616c54f94771156934666d38ee3",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "37VucYSaXLCAsxYyAPfbSi9eh4iEcbShgf",
+      "expectedSignature": "Izrp4l2j6808a/bQx+g38/Lqh95ePdfY8HkIc7Du3QlsVzsTu6nXcZtfraxsU8WSGvV4ruwFeRvfVUcau9mWIUg="
+    },
+    {
+      "scriptType": "nestedSegwit",
+      "network": "testnet3",
+      "path": "m/49'/1'/0'/0/0",
+      "secretKeyHex": "c9bdb49cfbaedca21c4b1f3a7803c34636b1d7dc55a717132443fc3f4c5867e8",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "2Mww8dCYPUpKHofjgcXcBCEGmniw9CoaiD2",
+      "expectedSignature": "JM636Rfgu/qcDayN2HCNYc38fS84c7PLtaguATqOv+ncLypJk6ekbwL6+2RYGQ5yREjrxopoj5SvjT97DUqe4Yw="
+    },
+    {
+      "scriptType": "nestedSegwit",
+      "network": "signet",
+      "path": "m/49'/1'/0'/0/0",
+      "secretKeyHex": "c9bdb49cfbaedca21c4b1f3a7803c34636b1d7dc55a717132443fc3f4c5867e8",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "2Mww8dCYPUpKHofjgcXcBCEGmniw9CoaiD2",
+      "expectedSignature": "JM636Rfgu/qcDayN2HCNYc38fS84c7PLtaguATqOv+ncLypJk6ekbwL6+2RYGQ5yREjrxopoj5SvjT97DUqe4Yw="
+    },
+    {
+      "scriptType": "nativeSegwit",
+      "network": "mainnet",
+      "path": "m/84'/0'/0'/0/0",
+      "secretKeyHex": "4604b4b710fe91f584fff084e1a9159fe4f8408fff380596a604948474ce4fa3",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "bc1qcr8te4kr609gcawutmrza0j4xv80jy8z306fyu",
+      "expectedSignature": "KAfvVQIHilPUf2NvB0C+0svA7/plCTnpPxPzA/RzJ3ccWGUVFjqP1eeIqW8FvtxrKz1WlUnBDXszIJNn972+HWc="
+    },
+    {
+      "scriptType": "nativeSegwit",
+      "network": "testnet3",
+      "path": "m/84'/1'/0'/0/0",
+      "secretKeyHex": "a9c4134b73560f43fc5c081e5c1daa7ce068adc806d80e1f37cb658e0fea4c8d",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "tb1q6rz28mcfaxtmd6v789l9rrlrusdprr9pqcpvkl",
+      "expectedSignature": "J5P2r9aVuqLpfzDHQ5i3uOQwsiKpbL/75ETMCE8TT7vlC/2gRjMDSxfSMAO8r2l7AfIR0J0Z0FeFnkEN3r2Fjvk="
+    },
+    {
+      "scriptType": "nativeSegwit",
+      "network": "signet",
+      "path": "m/84'/1'/0'/0/0",
+      "secretKeyHex": "a9c4134b73560f43fc5c081e5c1daa7ce068adc806d80e1f37cb658e0fea4c8d",
+      "message": "Maknoon BIP-137 KAT v1",
+      "expectedAddress": "tb1q6rz28mcfaxtmd6v789l9rrlrusdprr9pqcpvkl",
+      "expectedSignature": "J5P2r9aVuqLpfzDHQ5i3uOQwsiKpbL/75ETMCE8TT7vlC/2gRjMDSxfSMAO8r2l7AfIR0J0Z0FeFnkEN3r2Fjvk="
+    }
+  ],
+  "ethereum": {
+    "path": "m/44'/60'/0'/0/0",
+    "message": "Maknoon EIP-191 KAT v1",
+    "expectedAddress": "0x9858effd232b4033e47d90003d41ec34ecaeda94",
+    "expectedSignature": "0x05f931462fa127cf210566731eb75621d27c22d00ec4e8095ed5854be8b569e5283452c1af3090888070bd90ff5725a2ff0eb6bf2bd96814b888ae50ccc1e7a51c"
+  }
+}

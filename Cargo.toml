@@ -13,7 +13,7 @@ authors = ["Benjamin Chodroff"]
 # Pinned to v0.6.2 per the Cargo.lock-pinning decision. Bump
 # deliberately and re-run the conformance harness before changing.
 ledger_bitcoin_client = { version = "=0.6.2", default-features = false, features = ["async"] }
-bitcoin = { version = "0.32", default-features = false, features = ["std", "serde", "base64"] }
+bitcoin = { version = "0.32", default-features = false, features = ["std", "serde", "base64", "secp-recovery"] }
 uniffi = { version = "0.31", default-features = false }
 async-trait = "0.1"
 base64 = "0.22"
