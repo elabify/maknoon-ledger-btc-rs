@@ -72,7 +72,11 @@ fn hrp(net: Network) -> KnownHrp {
     }
 }
 
-fn address_for(secp_pk: &bitcoin::secp256k1::PublicKey, ty: BtcMsgScriptType, net: Network) -> Address {
+fn address_for(
+    secp_pk: &bitcoin::secp256k1::PublicKey,
+    ty: BtcMsgScriptType,
+    net: Network,
+) -> Address {
     let pk = PublicKey::new(*secp_pk);
     let cpk = CompressedPublicKey(*secp_pk);
     match ty {
@@ -227,11 +231,23 @@ mod tests {
             BtcMsgScriptType::NestedSegwit,
             BtcMsgScriptType::NativeSegwit,
         ] {
-            for net in [BtcMsgNetwork::Mainnet, BtcMsgNetwork::Testnet, BtcMsgNetwork::Signet] {
+            for net in [
+                BtcMsgNetwork::Mainnet,
+                BtcMsgNetwork::Testnet,
+                BtcMsgNetwork::Signet,
+            ] {
                 let signed = btc_sign_message(sk_bytes(), "hello maknoon".into(), ty, net).unwrap();
-                assert!(btc_verify_message(signed.address.clone(), "hello maknoon".into(), signed.signature.clone()));
+                assert!(btc_verify_message(
+                    signed.address.clone(),
+                    "hello maknoon".into(),
+                    signed.signature.clone()
+                ));
                 // Tampered message must fail.
-                assert!(!btc_verify_message(signed.address, "hello maknoo".into(), signed.signature));
+                assert!(!btc_verify_message(
+                    signed.address,
+                    "hello maknoo".into(),
+                    signed.signature
+                ));
             }
         }
     }

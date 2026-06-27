@@ -23,7 +23,10 @@ mod types;
 
 pub use client::LedgerBitcoinClient;
 pub use error::LedgerError;
-pub use message::{btc_sign_message, btc_verify_message, BtcMsgError, BtcMsgNetwork, BtcMsgScriptType, BtcSignedMessage};
+pub use message::{
+    btc_sign_message, btc_verify_message, BtcMsgError, BtcMsgNetwork, BtcMsgScriptType,
+    BtcSignedMessage,
+};
 pub use transport::{ExchangeResponse, Transport, TransportError};
 pub use types::{LedgerBitcoinNetwork, RegisteredPolicy, WalletPolicy};
 
