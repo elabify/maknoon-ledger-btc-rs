@@ -25,6 +25,11 @@ ledger-btc-rs/  (this repo)
    └── android          ←  build-aar.sh → ledger-btc-core.aar
 ```
 
+Script types by purpose (BIP44 / BIP49 / BIP84), hidden (passphrase) wallets, and
+custom / alternative derivation paths are all supported (a path override flows
+through the signing calls). The Trezor counterpart across all four chains is
+`trezor-core-rs` (one unified crate).
+
 ## Design pillars
 
 1. **Don't reimplement.** `ledger_bitcoin_client` v0.6.2 (pinned)
@@ -124,22 +129,14 @@ ledger-btc-rs/
 - [`Examples/android-test/`](Examples/android-test/) — Jetpack
   Compose Android app that consumes the locally-built .aar.
   Includes a `MockTransport` for emulator iteration and a
-  `BLETransport.kt` for real-device use (latter compiled but
-  untested without an Android phone).
+  `BLETransport.kt` for real-device use.
 
-## Milestone status
+## Status
 
-| Week  | Goal                                              | Status       |
-|-------|---------------------------------------------------|--------------|
-| 1     | Workspace scaffold + UniFFI null transport        | ✅ done       |
-| 2     | `LedgerBitcoinClient` wired to upstream, macOS    | ✅ done       |
-| 3     | End-to-end signPSBT on iOS (testnet)              | ✅ done       |
-| 4     | Same on Android                                   | 🟡 partial   |
-| 5     | Conformance harness in CI                         | 🚧 next      |
-| 6     | Multisig (2-of-3 segwit v0)                       | pending      |
-| 7     | Hardening: error mapping, edge cases              | pending      |
-| 8     | Demo prep                                         | pending      |
-| 9-10  | Buffer / pen-test feedback                        | pending      |
+Implemented and shipping in the Maknoon apps on both iOS and Android: PSBT signing
+across BIP44 / BIP49 / BIP84, hidden (passphrase) wallets, and custom derivation
+paths, over a BLE transport with a conformance harness that replays golden APDU
+vectors through a mock transport.
 
 ## License
 
