@@ -37,7 +37,7 @@ android {
 dependencies {
     // UniFFI-generated Kotlin glue uses JNA to load the native lib.
     // Pin to a recent stable.
-    implementation("net.java.dev.jna:jna:5.14.0@aar")
+    implementation("net.java.dev.jna:jna:5.17.0@aar")
 
     // Coroutines for async-callback support that UniFFI's async
     // bindings rely on.
